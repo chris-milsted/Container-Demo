@@ -100,6 +100,31 @@ systemctl start docker.service
 ```
 
 
+Here is the dockerfile
+
+```
+
+# My cool Docker image
+# Version 1
+
+# If you loaded redhat-rhel-server-7.0-x86_64 to your local registry, uncomment this FROM line instead:
+# FROM registry.access.redhat.com/rhel 
+# Pull the rhel image from the local repository
+FROM registry.access.redhat.com/rhel 
+
+MAINTAINER Chris Negus 
+
+# Update image
+RUN yum update -y || true
+RUN yum install httpd -y
+RUN yum clean all
+RUN mkdir /run/httpd ||true
+
+# Create an index.html file
+RUN bash -c 'echo "Your Web server test is successful." >> /var/www/html/index.html' 
+
+```
+
 
 
 
